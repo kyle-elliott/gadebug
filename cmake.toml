@@ -1,0 +1,29 @@
+[project]
+name = "gadebug"
+
+[vcpkg]
+version = "2022.03.10"
+packages = [
+    "bddisasm"
+]
+
+[fetch-content.safetyhook]
+git = "https://github.com/cursey/safetyhook"
+
+[find-package]
+bddisasm = { required = true }
+
+[target.gadebug]
+type = "shared"
+sources = ["src/**.cpp", "src/**.hpp", "src/**.h"]
+compile-features = [
+    "cxx_std_23"
+]
+
+link-libraries = [
+    "bddisasm::bddisasm",
+    "safetyhook"
+]
+
+[target.gadebug.properties]
+CXX_STANDARD = "23"
